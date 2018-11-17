@@ -6,5 +6,11 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'blochacks-project';
+
+  testResponse : String;
+
+  // Getting the id parameter from the URL and fetching its details
+  parsePhotoToForm(url: String): void {
+    this.testResponse = "test response";
+  }
 }
