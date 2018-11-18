@@ -7,38 +7,44 @@
 
     <div class="form-group">
       <label for="PassportId">Passport ID</label>
-      <input type="text" class="form-control" id="passportId" placeholder="Unique ID to represent the passport">
+      <input type="text" class="form-control" id="passportId" placeholder="{{passportId?passportId: 'Unique ID to represent the passport'}}"> 
       <small id="emailHelp" class="form-text text-muted">We'll never share your passport ID with anyone else.</small>
     </div>
 
     <div class="form-group">
+      <label for="PersonalId">Personal ID</label>
+      <input type="text" class="form-control" id="personalId" placeholder="{{personalId?personalId:'Personal ID'}}"> 
+    </div>
+
+    <div class="form-group">
       <label for="firstName">First Name</label>
-      <input type="textarea" class="form-control" id="firstName" placeholder="First Name">
+      <input type="textarea" class="form-control" id="firstName" placeholder="{{firstName?firstName:'First Name'}}"> 
     </div>
 
     <div class="form-group">
       <label for="lastName">Last Name</label>
-      <input type="text" class="form-control" id="lastName" placeholder="Last Name">
+      <input type="text" class="form-control" id="lastName" placeholder="{{lastName?lastName:'Last Name'}}"> 
     </div>
 
     <div class="form-group">
       <label for="sex">Sex</label>
-      <input type="text" class="form-control" id="sex" placeholder="Sex">
+      <input type="text" class="form-control" id="sex" placeholder="{{sex?sex:'Sex'}}"> 
     </div>
 
     <div class="form-group">
       <label for="dateOfBirth">Date of birth</label>
-      <input type="date" class="form-control" id="dateOfBirth" placeholder="Date of birth">
+      <input type="text" class="form-control" id="dateOfBirth" placeholder="{{dateOfBirth?dateOfBirth:'YYMMDD'}}"> 
     </div>
 
     <div class="form-group">
       <label for="country">Country</label>
-      <input type="text" class="form-control" id="country" placeholder="Country">
+      <input type="text" class="form-control" id="country" placeholder="{{country?country:'Country'}}">
     </div>
 
     <div class="form-group">
       <label for="expirationDate">Expiration Date</label>
-      <input type="date" class="form-control" id="expirationDate" placeholder="Expiration Date">
+      <input type="text" class="form-control" id="expirationDate" placeholder="{{expirationDate?expirationDate:'YYMMDD'}}"> 
     </div>
   </form>
 </div>
+
