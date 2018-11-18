@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 import { RequestOptions } from '@angular/http';
+import { catchError } from 'rxjs/operators';
+import { throwError } from 'rxjs';
 
 const URI = "https://api.cloudmersive.com/ocr/image/toText";
 
@@ -31,11 +33,17 @@ export class OcrServiceService {
     console.log(formData);
     console.log(httpHeaders);
     this.http.post(URI, formData, httpHeaders)
-    .subscribe((data:any) => {
-      console.log(JSON.stringify(data));
-    },
-    (error:any) => {
-      console.log(error);
-    })
+    .pipe(
+       catchError(() => {return throwError('Something bad happened')})
+     );
+
+    //
+    // .map(res => res.json())
+    // .subscribe((data:any) => {
+    //   console.log(JSON.stringify(data));
+    // },
+    // (error:any) => {
+    //   console.log(error);
+    // })
   }
 }
