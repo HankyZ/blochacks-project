@@ -1,0 +1,54 @@
+<div id="passportContainer" class="container">
+  <form>
+    <div class="form-group">
+      <label for="imageUpload">Image upload</label>
+      <input type='file' class="form-control-file" id="ImageUpload" (change)="readCode($event)">
+    </div>
+
+    <div class="form-group">
+      <label for="CodeLine1">Code Line 1</label>
+      <input type="text" class="form-control" id="codeLine1" placeholder="First line of the MRZ" value="{{codeLine1}}">
+    </div>
+
+    <div class="form-group">
+      <label for="CodeLine2">Code Line 2</label>
+      <input type="text" class="form-control" id="codeLine2" placeholder="Second line of the MRZ" value="{{codeLine2}}">
+    </div>
+
+    <div class="form-group">
+      <label for="PassportId">Passport ID</label>
+      <input type="text" class="form-control" id="passportId" placeholder="Unique ID to represent the passport">
+      <small id="emailHelp" class="form-text text-muted">We'll never share your passport ID with anyone else.</small>
+    </div>
+
+    <div class="form-group">
+      <label for="firstName">First Name</label>
+      <input type="textarea" class="form-control" id="firstName" placeholder="First Name">
+    </div>
+
+    <div class="form-group">
+      <label for="lastName">Last Name</label>
+      <input type="text" class="form-control" id="lastName" placeholder="Last Name">
+    </div>
+
+    <div class="form-group">
+      <label for="sex">Sex</label>
+      <input type="text" class="form-control" id="sex" placeholder="Sex">
+    </div>
+
+    <div class="form-group">
+      <label for="dateOfBirth">Date of birth</label>
+      <input type="date" class="form-control" id="dateOfBirth" placeholder="Date of birth">
+    </div>
+
+    <div class="form-group">
+      <label for="country">Country</label>
+      <input type="text" class="form-control" id="country" placeholder="Country">
+    </div>
+
+    <div class="form-group">
+      <label for="expirationDate">Expiration Date</label>
+      <input type="date" class="form-control" id="expirationDate" placeholder="Expiration Date">
+    </div>
+  </form>
+</div>

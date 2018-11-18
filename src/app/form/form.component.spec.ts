@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { OcrComponent } from './ocr.component';
+import { FormComponentComponent } from './form-component.component';
 
-describe('OcrComponent', () => {
-  let component: OcrComponent;
-  let fixture: ComponentFixture<OcrComponent>;
+describe('FormComponentComponent', () => {
+  let component: FormComponentComponent;
+  let fixture: ComponentFixture<FormComponentComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ OcrComponent ]
+      declarations: [ FormComponentComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(OcrComponent);
+    fixture = TestBed.createComponent(FormComponentComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

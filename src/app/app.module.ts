@@ -4,19 +4,20 @@ import { HttpClientModule } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { OcrComponent } from './ocr/ocr.component';
+import { FormComponent } from './form/form.component';
+import { OcrService } from './ocr.service';
 
 @NgModule({
   declarations: [
     AppComponent,
-    OcrComponent
+    FormComponent
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
     AppRoutingModule
   ],
-  providers: [],
+  providers: [OcrService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
