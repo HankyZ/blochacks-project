@@ -14,6 +14,6 @@ To improve our accuracy, there is a library that we can use which allows us to c
 Unfortunately, to test or buy MIL, it takes multiple days. So we were not able to use MIL for this project.
 
 ## OCR APIs / libraries Tested
-* **Google Cloud Vision**: The algorithm discards strings containing long non-alphabet patterns. Therefore if we have a long sequence of "<" (more than 4), the API can return us nothing.
+* **Google Cloud Vision**: Even thought this API has the best accuracy, the algorithm discards strings containing long non-alphabet patterns. Therefore if we have a long sequence of "<" (more than 4), it is possible that the API returns us nothing.
 * **Microsoft Cognitive Computer Vision, OCR.Space, SemaMediaData**: Same problem as Google Cloud Vision with a worse accuracy.
 * **Taggun**: Can only read receipts.
