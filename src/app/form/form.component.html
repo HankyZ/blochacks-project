@@ -2,7 +2,17 @@
   <form>
     <div class="form-group">
       <label for="imageUpload">Image upload</label>
-      <input type='file' class="form-control-file" id="ImageUpload" (change)="readUrl($event)">
+      <input type='file' class="form-control-file" id="ImageUpload" (change)="readCode($event)">
+    </div>
+
+    <div class="form-group">
+      <label for="CodeLine1">Code Line 1</label>
+      <input type="text" class="form-control" id="codeLine1" placeholder="First line of the MRZ" value="{{codeLine1}}">
+    </div>
+
+    <div class="form-group">
+      <label for="CodeLine2">Code Line 2</label>
+      <input type="text" class="form-control" id="codeLine2" placeholder="Second line of the MRZ" value="{{codeLine2}}">
     </div>
 
     <div class="form-group">

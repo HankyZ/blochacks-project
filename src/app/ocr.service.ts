@@ -4,12 +4,13 @@ import { RequestOptions } from '@angular/http';
 import { catchError } from 'rxjs/operators';
 import { throwError } from 'rxjs';
 
-const URI = "https://api.cloudmersive.com/ocr/image/toText";
+const URI = "https://api.cloudmersive.com/ocr/image/to/lines-with-location";
 
 const httpHeaders = {
-headers: new HttpHeaders({
+  headers: new HttpHeaders({
     'Accept': 'application/json',
-    'Content-Type': 'multipart/form-data',
+    'enctype': 'multipart/form-data',
+    'language': 'ENG',
     'Apikey': '28e63794-ef8a-4616-80bb-26fdd3709a19'
   })
 };
@@ -18,32 +19,18 @@ headers: new HttpHeaders({
 @Injectable({
   providedIn: 'root'
 })
-export class OcrServiceService {
+export class OcrService {
 
   constructor(private http: HttpClient) { }
 
-  parse(event:any) {
-    console.log("parsing ... ");
+  read(event: any): any {
     let file: File = event.target.files[0];
     let formData: FormData = new FormData();
     formData.append('imageFile', file, file.name);
     formData.append('type', 'image/png');
+    console.log("parsing ... ");
 
-    console.log("printing everything");
-    console.log(formData);
-    console.log(httpHeaders);
-    this.http.post(URI, formData, httpHeaders)
-    .pipe(
-       catchError(() => {return throwError('Something bad happened')})
-     );
-
-    //
-    // .map(res => res.json())
-    // .subscribe((data:any) => {
-    //   console.log(JSON.stringify(data));
-    // },
-    // (error:any) => {
-    //   console.log(error);
-    // })
+    return this.http.post(URI, formData, httpHeaders)
+      .pipe();
   }
 }
