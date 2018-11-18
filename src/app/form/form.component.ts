@@ -10,6 +10,8 @@ import { OcrService } from '../ocr.service';
 @Injectable()
 export class FormComponent implements OnInit {
 
+  errorMessage: string;
+  loading: boolean;
   codeLine1: String;
   codeLine2: String;
   passportId: string;
@@ -24,6 +26,8 @@ export class FormComponent implements OnInit {
   constructor(private ocrService: OcrService) { }
 
   ngOnInit() {
+    this.errorMessage = '';
+    this.loading = false;
     this.codeLine1 = '';
     this.codeLine2 = '';
     this.passportId = '';
@@ -37,13 +41,20 @@ export class FormComponent implements OnInit {
   }
 
   readCode(event: any) {
-    this.ocrService.read(event)
-      .subscribe((data: any) => {
-        console.log(data.Lines);
-        this.processCode(data.Lines);
-      }, (error: any) => {
-        console.log(error);
-      });;
+    if (event.target.files[0].name.indexOf(".png") > 0) {
+      this.loading = true;
+      this.errorMessage = '';
+      this.ocrService.read(event)
+        .subscribe((data: any) => {
+          console.log(data.Lines);
+          this.loading = false;
+          this.processCode(data.Lines);
+        }, (error: any) => {
+          console.log(error);
+        });;
+    } else {
+      this.errorMessage = "must be .png file";
+    }
   };
 
 
@@ -67,6 +78,12 @@ export class FormComponent implements OnInit {
         .join('0').split('S').join('5').split('I').join('1') + this.codeLine2
           .substring(27, this.codeLine2.length);
 
+    // filter out the double angle  quotes to two seperate quotes
+    this.codeLine1.replace(/«/,'<<');
+    this.codeLine1.replace(/»/,'>>');
+    this.codeLine2.replace(/«/,'<<');
+    this.codeLine2.replace(/»/,'>>');
+    
     // remove all non ascii characters
     if (this.codeLine2.length > 44)
       this.codeLine2.replace(/[^\x00-\x7F]/g, '').replace(/‘/g, '');
