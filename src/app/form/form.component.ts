@@ -41,7 +41,7 @@ export class FormComponent implements OnInit {
   }
 
   readCode(event: any) {
-    if (event.target.files[0].name.indexOf(".png") > 0) {
+    if (event.target.files[0].name.toLowerCase().indexOf(".png") > 0 || event.target.files[0].name.toLowerCase().indexOf(".jpg") > 0) {
       this.loading = true;
       this.errorMessage = '';
       this.ocrService.read(event)
@@ -53,7 +53,7 @@ export class FormComponent implements OnInit {
           console.log(error);
         });;
     } else {
-      this.errorMessage = "must be .png file";
+      this.errorMessage = "must be .png or .jpg file";
     }
   };
 
@@ -83,7 +83,7 @@ export class FormComponent implements OnInit {
     this.codeLine1.replace(/»/,'>>');
     this.codeLine2.replace(/«/,'<<');
     this.codeLine2.replace(/»/,'>>');
-    
+
     // remove all non ascii characters
     if (this.codeLine2.length > 44)
       this.codeLine2.replace(/[^\x00-\x7F]/g, '').replace(/‘/g, '');

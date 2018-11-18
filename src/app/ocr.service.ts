@@ -24,7 +24,7 @@ export class OcrService {
     let file: File = event.target.files[0];
     let formData: FormData = new FormData();
     formData.append('imageFile', file, file.name);
-    formData.append('type', 'image/png');
+    formData.append('type', file.type);
     console.log("parsing ... ");
 
     return this.http.post(URI, formData, httpHeaders)
