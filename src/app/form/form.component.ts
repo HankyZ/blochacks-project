@@ -26,6 +26,10 @@ export class FormComponent implements OnInit {
   constructor(private ocrService: OcrService) { }
 
   ngOnInit() {
+    this.reset();
+  }
+
+  reset() {
     this.errorMessage = '';
     this.loading = false;
     this.codeLine1 = '';
@@ -41,7 +45,8 @@ export class FormComponent implements OnInit {
   }
 
   readCode(event: any) {
-    if (event.target.files[0].name.indexOf(".png") > 0) {
+    this.reset();
+    if (event.target.files[0].name.toLowerCase().indexOf(".png") > 0 || event.target.files[0].name.toLowerCase().indexOf(".jpg") > 0) {
       this.loading = true;
       this.errorMessage = '';
       this.ocrService.read(event)
@@ -53,7 +58,7 @@ export class FormComponent implements OnInit {
           console.log(error);
         });;
     } else {
-      this.errorMessage = "must be .png file";
+      this.errorMessage = "must be .png or .jpg file";
     }
   };
 
@@ -65,12 +70,21 @@ export class FormComponent implements OnInit {
       return;
     }
 
-    this.codeLine1 = lines[lines.length - 2].LineText.trim().split('(').join('<')
-      .split(' ').join('').toUpperCase().split('$').join('S').split('5').join('S')
-      .split('0').join('O').split('1').join('I');
+    var i: number;
 
-    this.codeLine2 = lines[lines.length - 1].LineText.trim().split('(').join('<')
-      .split(' ').join('').toUpperCase().split('$').join('S');
+    for (let line of lines) {
+      if (line.LineText.length < 25) continue;
+      if (!this.codeLine1 && line.LineText.charAt(0) === 'P' && line.LineText.indexOf('<') > 0) {
+        this.codeLine1 = line.LineText.trim().split('(').join('<')
+          .split(' ').join('').toUpperCase().split('$').join('S').split('5').join('S')
+          .split('0').join('O').split('1').join('I');
+        continue;
+      }
+      if (!this.codeLine2 && line.LineText.indexOf('<') > 0) {
+        this.codeLine2 = line.LineText.trim().split('(').join('<')
+          .split(' ').join('').toUpperCase().split('$').join('S');
+      }
+    }
 
     this.codeLine2 = this.codeLine2.substring(0, 13) + this.codeLine2.substring(13, 19)
       .split('O').join('0').split('S').join('5').split('I').join('1').split('\'')
@@ -79,11 +93,11 @@ export class FormComponent implements OnInit {
           .substring(27, this.codeLine2.length);
 
     // filter out the double angle  quotes to two seperate quotes
-    this.codeLine1.replace(/«/,'<<');
-    this.codeLine1.replace(/»/,'>>');
-    this.codeLine2.replace(/«/,'<<');
-    this.codeLine2.replace(/»/,'>>');
-    
+    this.codeLine1.replace(/«/, '<<');
+    this.codeLine1.replace(/»/, '>>');
+    this.codeLine2.replace(/«/, '<<');
+    this.codeLine2.replace(/»/, '>>');
+
     // remove all non ascii characters
     if (this.codeLine2.length > 44)
       this.codeLine2.replace(/[^\x00-\x7F]/g, '').replace(/‘/g, '');
