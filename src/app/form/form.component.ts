@@ -46,7 +46,7 @@ export class FormComponent implements OnInit {
 
   readCode(event: any) {
     this.reset();
-    if (event.target.files[0].name.indexOf(".png") > 0) {
+    if (event.target.files[0].name.toLowerCase().indexOf(".png") > 0 || event.target.files[0].name.toLowerCase().indexOf(".jpg") > 0) {
       this.loading = true;
       this.errorMessage = '';
       this.ocrService.read(event)
