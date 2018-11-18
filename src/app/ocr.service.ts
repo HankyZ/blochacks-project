@@ -7,7 +7,7 @@ const httpHeaders = {
   headers: new HttpHeaders({
     'Accept': 'application/json',
     'enctype': 'multipart/form-data',
-    'language': 'English',
+    'language': 'ENG',
     'Apikey': '28e63794-ef8a-4616-80bb-26fdd3709a19'
   })
 };

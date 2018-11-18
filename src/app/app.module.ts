@@ -7,7 +7,6 @@ import { AppComponent } from './app.component';
 import { FormComponent } from './form/form.component';
 import { OcrService } from './ocr.service';
 
-
 @NgModule({
   declarations: [
     AppComponent,
