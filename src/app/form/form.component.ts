@@ -58,7 +58,7 @@ export class FormComponent implements OnInit {
           console.log(error);
         });;
     } else {
-      this.errorMessage = "must be .png file";
+      this.errorMessage = "must be .png or .jpg file";
     }
   };
 
