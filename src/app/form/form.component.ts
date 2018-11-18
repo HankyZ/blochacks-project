@@ -122,7 +122,7 @@ export class FormComponent implements OnInit {
   }
 
   parseCountry() {
-    return this.codeLine1.split('<')[1].substring(0, 3);
+    return this.codeLine1.split('<')[1] ? this.codeLine1.split('<')[1].substring(0, 3): 'Country could not be extracted!';
   }
 
   parseLastName() {
